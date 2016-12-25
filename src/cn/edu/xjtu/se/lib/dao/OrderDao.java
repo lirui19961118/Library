@@ -1,5 +1,7 @@
 package cn.edu.xjtu.se.lib.dao;
 
+import java.util.ArrayList;
+
 import cn.edu.xjtu.se.lib.entity.Order;
 
 public interface OrderDao {
@@ -11,4 +13,6 @@ public interface OrderDao {
 	Order searchOrder(String isbn, String idCard);
 	//更新借书状态
 	boolean updateStatus(String isbn, String idCard, String status);
+	//通过idcard查询所有order
+	ArrayList<Order> searchByIdcard(String idCard);
 }

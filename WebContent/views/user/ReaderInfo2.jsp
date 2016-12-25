@@ -5,7 +5,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<% User user=(User)session.getAttribute("user"); %>
+<% Admin admin=(Admin)session.getAttribute("user"); %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh-cn">
@@ -19,7 +19,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="static/vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 <link href="static/css/agency.min.css" rel="stylesheet">
-<%@include file="HeadSearch.jsp" %>
 </head>
 <body>
 	<div class="container">
@@ -35,37 +34,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<th>借阅时间</th>
 							<th>归还时间</th>
 							<th>状态</th>
-							<th>操作</th>
 						</tr>
 					</thead>
 					<tbody>
-<% List infoborrow=(List)session.getAttribute("infoborrow");
-//List infoborrow=(List)request.getAttribute("infoborrow");
-ArrayList infob = null;
+<% ArrayList infoborrow=(ArrayList)session.getAttribute("infoborrow");
 String[] sty={"success","error","warning","info"};
+ArrayList br=null;
 %>
 <%
 for(int i=1;i<infoborrow.size();i++){
 	//String[] info=infoborrow.get(i).toString().split("\\[|,|\\]");
-    infob = (ArrayList)infoborrow.get(i);
-   
+    br = (ArrayList)infoborrow.get(i);
 %>
-<%-- 	<tr class=<%= sty[i%4] %>>
+	<tr class=<%= sty[i%4] %>>
 	<td><%= i %></td>
-	<td><%= info[3] %></td>	
-	<td><%= info[4].split(" ")[1] %></td>
-	<td><%= info[5].split(" ")[1] %></td>
-	<td><%= info[6] %></td>
-	<td><a class="btn btn-primary">还书</a></td>
-    </tr> --%>
-    
-    <tr class=<%= sty[i%4] %>>
-	<td><%= i %></td>
-	<td><%= infob.get(2) %></td>	
-	<td><%= infob.get(3) %></td>
-	<td><%= infob.get(4) %></td>
-	<td><%= infob.get(5) %></td>
-	<td><a class="btn btn-primary">还书</a></td>
+	<td><%= br.get(2) %></td>	
+	<td><%= br.get(3) %></td>
+	<td><%= br.get(4) %></td>
+	<td><%= br.get(5) %></td>
     </tr>
 
 <%
@@ -76,55 +62,35 @@ for(int i=1;i<infoborrow.size();i++){
 					</tbody>
 				</table>
 				
-				<h1 style="text-align: center">图书推荐</h1>
-				<div class="row">
-					<div class="col-md-4">
-						<div class="thumbnail">
-							<img style="width: 260px; height: 320px"
-								src="static/img/C++.jpg" />
-							<div class="caption">
-								<h3>C艹 Primer</h3>
-								<p>Introduction to Algorithms is a book by Thomas H. Cormen,
-									Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein.</p>
-								<p>
-									<a class="btn btn-primary" href="#">查看详情</a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="thumbnail">
-							<img style="width: 260px; height: 320px"
-								src="static/img/X86.jpg" />
-							<div class="caption">
-								<h3>X86 PC汇编语言设计</h3>
-								<p>Introduction to Algorithms is a book by Thomas H. Cormen,
-									Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein.</p>
-								<p>
-									<a class="btn btn-primary" href="#">查看详情</a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="thumbnail">
-							<img style="width: 260px; height: 320px"
-								src="static/img/Algorithm.jpg" />
-							<div class="caption">
-								<h3>算法导论</h3>
-								<p>Introduction to Algorithms is a book by Thomas H. Cormen,
-									Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein.</p>
-								<p>
-									<a class="btn btn-primary" href="#">查看详情</a>
-								</p>
-							</div>
-						</div>
-					</div>
-					
-					
-					
+				
+				
+				<nav class="navbar navbar-default navbar-inverse navbar-fixed-top"
+					role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span><span
+							class="icon-bar"></span><span class="icon-bar"></span><span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">XJTU</a>
 				</div>
-					
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<form class="navbar-form navbar-left" role="search">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="SearchHere" />
+						</div>
+						<button type="submit" class="btn btn-default">Submit</button>
+					</form>
+					<ul class="nav navbar-nav navbar-right">
+						<!-->用session显示输出名字<-->
+						<li><a href="#">欢迎你:admin</a></li>
+						<li><a href="#">我的信息</a></li>
+						<li><a href="#">注销</a></li>
+					</ul>
+				</div>
+				</nav>
 			</div>
 		</div>
 	</div>

@@ -156,10 +156,10 @@ public class BookImpl implements BookDao {
 	}
 
 	@Override
-	public List<Book> searchByBookName(String bookName) {
+	public ArrayList<Book> searchByBookName(String bookName) {
 		// TODO Auto-generated method stub
 		ArrayList<Book> result = new ArrayList<Book>();
-		String sql = "select * from Book where bookName like '"+bookName+"'";
+		String sql = "select * from Book where bookName like '%"+bookName+"%'";
 		result = new QueryList().queryReturnList(sql);
 		return result;
 	}
@@ -180,6 +180,15 @@ public class BookImpl implements BookDao {
 		String sql = "select * from User_Book where idCard='"+idCard+"'";
 		result = new QueryList().queryReturnList(sql);
 		return result;
+	}
+	
+	@Override
+	public ArrayList<Book> displayAllBook() {
+		// TODO 自动生成的方法存根
+		ArrayList<Book> b = new ArrayList<Book>();
+		String sql = "select * from book";
+		b = new QueryList().queryReturnList(sql);
+		return b;
 	}
 
 }

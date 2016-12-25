@@ -97,7 +97,7 @@ for(int i=1;i<users.size();i++){
 						</td>
 						
 						<td>
-							&nbsp&nbsp&nbsp&nbsp<button style="color:orange"><a href="views/user/ReaderInfo.jsp">详情</a></button>
+							&nbsp&nbsp&nbsp&nbsp<button style="color:orange"><a href="ReaderInfo2Servlet?stuid=<%=us.get(0) %>">详情</a></button>
 						</td>
 					</tr>
 <% } %>					

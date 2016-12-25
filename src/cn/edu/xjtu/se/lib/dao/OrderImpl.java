@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import cn.edu.xjtu.se.lib.entity.Book;
 import cn.edu.xjtu.se.lib.entity.Order;
@@ -33,7 +34,7 @@ public class OrderImpl implements OrderDao {
 		}
 		try {
 			String sql="" +
-					"insert into Order" +
+					"insert into user_book" +
 					"(UserBookId,idCard,isbn,borrowTime,returnTime,status)" +
 					"values(" +
 					"?,?,?,?,?,?)";
@@ -146,5 +147,12 @@ public class OrderImpl implements OrderDao {
 		}
 		return true;
 	}
-
+	@Override
+	public ArrayList<Order> searchByIdcard(String idCard) {
+		// TODO 自动生成的方法存根
+		ArrayList<Order> b = new ArrayList<Order>();
+		String sql = "select * from user_book where idCard='"+idCard+"'";//查表查错了？？是user_book
+		b = new QueryList().queryReturnList(sql);
+		return b;
+	}
 }
