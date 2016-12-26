@@ -86,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="intro-text">
 			<div class="intro-lead-in">HelloLibrary</div>
 			<div class="intro-heading">welcome!</div>
-			<a href="views/user/login.jsp" class="page-scroll btn btn-xl">Login</a>
+			<a href="ifuser" class="page-scroll btn btn-xl">Login</a>
 		</div>
 	</div>
 	</header>

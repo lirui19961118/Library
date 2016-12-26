@@ -1,24 +1,29 @@
 package cn.edu.xjtu.se.lib.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import cn.edu.xjtu.se.lib.dao.UserDao;
+import cn.edu.xjtu.se.lib.dao.UserImpl;
+import cn.edu.xjtu.se.lib.entity.User;
 
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class ChangeStatus
  */
-@WebServlet("/LogoutServlet")
-public class LogoutServlet extends HttpServlet {
+@WebServlet("/ChangeStatus")
+public class ChangeStatus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public ChangeStatus() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,9 +33,23 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession  session = request.getSession();
-		session.setAttribute("user", null);
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		String stuid = request.getParameter("userId");
+		UserDao userdao = new UserImpl();
+		
+		User user = userdao.searchUserByIdCard(stuid);
+		
+		if(user.getStatus().equals("normal"))
+			user.setStatus("declined");
+		else
+			user.setStatus("normal");
+		
+		userdao.updateStatus(user);
+		ArrayList<User> users = new ArrayList<User>();
+		
+		users = userdao.displayAllUser();
+		request.getSession().setAttribute("users", users);
+		request.getRequestDispatcher("views/user/manager.jsp").forward(request, response);
+		
 		
 	}
 

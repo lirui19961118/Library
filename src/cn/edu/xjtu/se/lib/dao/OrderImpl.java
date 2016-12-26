@@ -70,11 +70,11 @@ public class OrderImpl implements OrderDao {
 		try {
 			String sql="" +
 					" delete from user_book " +
-					" where isbn=?, idCard=?";
+					" where isbn=? and idCard=?";
 			PreparedStatement ptmt;
 			ptmt = conn.prepareStatement(sql);
 			ptmt.setString(1, isbn);
-			ptmt.setString(1, idCard);
+			ptmt.setString(2, idCard);
 			ptmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -154,5 +154,32 @@ public class OrderImpl implements OrderDao {
 		String sql = "select * from user_book where idCard='"+idCard+"'";//查表查错了？？是user_book
 		b = new QueryList().queryReturnList(sql);
 		return b;
+	}
+	
+	@Override
+	public boolean removeOrderById(int id) {
+		boolean flag = true;
+		Connection conn=DBConnection.getConnection();
+		if(conn == null){
+			System.out.println("数据库没有连接");
+			return false;
+		}
+		
+		try {
+			String sql="" +
+					" delete from user_book " +
+					" where UserBookId=?";
+			PreparedStatement ptmt;
+			ptmt = conn.prepareStatement(sql);
+			ptmt.setInt(1, id);
+			ptmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			flag = false;
+		} finally{
+			DBConnection.close(conn, st, rs);
+		}
+		return flag;
 	}
 }

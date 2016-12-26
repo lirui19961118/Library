@@ -51,8 +51,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div>
 					库存：<%=b.getCan_borrow() %>
 				</div>
-				<a class="btn btn-primary" href="BorrowBook?bookId=<%=b.getIsbn()%>">借书</a>
+				<% if(b.getCan_borrow()==0) {%>
+				<div style="color:red">
+					库存为0,不可借书
+				</div>
+				<% }else if(user.getAlready_num() >= 10) {%>
+				<div style="color:red">
+					已达借书上限10，不可借书
+				</div>
+				<% }else {%>
 				
+				<a class="btn btn-primary" href="BorrowBook?bookId=<%=b.getIsbn()%>">借书</a>
+				<%} %>
 			</div>
 			
 		</div>

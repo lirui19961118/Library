@@ -45,9 +45,9 @@
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 						<!-->用session显示输出名字<-->
-						<li><a href="#">欢迎你:<%= name %></a></li>
-						<li><a href="#">我的信息</a></li>
-						<li><a href="#">注销</a></li>
+						<li><a>欢迎你:<%= name %></a></li>
+						<li><a href="views/user/ReaderInfo.jsp">我的信息</a></li>
+						<li><a href="LogoutServlet">注销</a></li>
 						<li><a href="BookList">进入图书馆</a></li>
 					</ul>
 				</div>

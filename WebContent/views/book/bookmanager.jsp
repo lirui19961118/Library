@@ -14,7 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <base href="<%=basePath%>">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>管理界面</title>
+    <title>管理图书界面</title>
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
 	<link href="static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href="static/css/agency.min.css" rel="stylesheet">
@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<ul class="nav navbar-nav navbar-right">
 						<!-->用session显示输出名字<-->
 						<li><a>欢迎你:admin</a></li>
-						<li><a href = "BookManager">图书管理</a></li>
+						
 						<li><a href="LogoutServlet">注销</a></li>
 						
 					</ul>
@@ -54,86 +54,151 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="jumbotron">
 				
 			</div>
+
 			<table class="table table-bordered table-hover">
-			<h1 style="text-align:center">读者管理</h1>
-				<thead>
+			<h1 style="text-align:center">图书管理</h1>
+
+			    <thead>
 					<tr>
-					    <th>
-							读者学号
-						</th>
-					
 						<th>
-							读者姓名
+							编号
 						</th>
 						<th>
-							借书数量   
+							ISBN号
 						</th>
 						<th>
-							读者状态
+							数量
 						</th>
 						<th>
-							借书详情
+							操作
 						</th>
 					</tr>
 				</thead>
+
 				<tbody>
-<% ArrayList users=(ArrayList)session.getAttribute("users");
-ArrayList us = null;
-String[] sty={"success","error","warning","info"};
-%>
-	<%
-String tr=null;
-String select=null;
-for(int i=1;i<users.size();i++){
-	//String[] info=users.get(i).toString().split("\\[|,|\\]");
-	us = (ArrayList)users.get(i);
-	tr="stuid"+i;
-    select="select"+i;
-    //tr="stuid";
-    //select="select";
-%>	
-					<tr class="success"  class = <%= tr %>>
-					    <td id = <%= tr %> >
-							<%-- <%= info[1] %> --%>
-							<%=us.get(0) %>
+<%
+    	ArrayList bookSearch = (ArrayList)request.getAttribute("books");
+    	ArrayList al = null;
+    	if(bookSearch != null){
+    		for(int i = 1; i < bookSearch.size(); i++){
+    			al = (ArrayList)bookSearch.get(i);
+ %>
+
+
+					<tr class="info">
+						<td>
+							<%= al.get(1) %>
 						</td>
 						<td>
-							<%-- <%= info[3] %> --%>
-							<%=us.get(2) %>
+							<%= al.get(0) %>
 						</td>
 						<td>
-							<%-- <%= info[6] %> --%>
-							<%=us.get(5) %>
+							<!-- <input class="min" name="" type="button" value="-" /> -->
+							<input class="text_box" name="goodnum" type="text" value="<%= al.get(4) %>" style="width:25px;" />
+							<!-- <input class="add" name="" type="button" value="+" /> -->
 						</td>
 						<td>
-							<a class="btn btn-primary" href="ChangeStatus?userId=<%=us.get(0)%>"><%=us.get(6) %></a>
-						</td>
-						 
-						<td>
-							&nbsp&nbsp&nbsp&nbsp<button style="color:orange"><a href="ReaderInfo2Servlet?stuid=<%=us.get(0) %>">详情</a></button>
+							<button onclick="" style="color:orange">修改数量</button>
 						</td>
 					</tr>
-<% } %>					
+<% } 
+    	}
+%>
 					<tr class="warning">
 						<td>
-							
+							......
 						</td>
 						<td>
-							
+							......
 						</td>
 						<td>
-							
+							......
 						</td>
 						<td>
-							
-						</td>
-						<td>
-							
+							<button data-toggle="modal" href="#myModal" style="color:blue">添加新书</button>
+							<!-- 模态框（Modal） -->
+							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+								
+								<form action="AddBook"  method="post">
+								
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+												&times;
+											</button>
+											<h4 class="modal-title" id="myModalLabel">
+												添加书籍信息
+											</h4>
+										</div>
+										
+										<div class="modal-body">
+											<table class="table">
+											
+											<tbody>
+												<tr>
+													<td>
+														书&nbsp&nbsp&nbsp名：<input type="text" name=bookName>
+													</td>
+													<td>
+														ISBN：<input type="text" name=isbn>
+													</td>
+													
+												</tr>
+												<tr>
+													<td>
+														数&nbsp&nbsp&nbsp量：<input type="text" name=number>
+													</td>
+													<td>
+														作者：<input type="text" name=author>
+													</td>
+													
+												</tr>
+												<tr>
+													<td>
+														出&nbsp&nbsp版&nbsp&nbsp社：<input type="text" name=publish>
+													</td>
+													<td>
+														书籍图片：<input type="file" name=picture>
+													</td>
+													
+												</tr>
+												
+											</tbody>
+											</table>
+											&nbsp&nbsp描述：<br>&nbsp&nbsp<textarea name="describe" style="width:480px;height:50px;">这里写内容</textarea>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+											</button>
+											<button type="submit" class="btn btn-primary">
+												提交更改
+											</button>
+										</div>
+										
+							</form>	
+									</div><!-- /.modal-content -->
+								</div><!-- /.modal -->
+							</div>
 						</td>
 					</tr>
+
+			<!-- 		<tr class="warning">
+						<td>
+							<a href=# style="color:red">显示更多...</a>
+						</td>
+						<td>
+							......
+						</td>
+						<td>
+							......
+						</td>
+						<td>
+							......
+						</td>
+					</tr> -->
 				</tbody>
 			</table>
-			
 			
 		</div>
 	</div>

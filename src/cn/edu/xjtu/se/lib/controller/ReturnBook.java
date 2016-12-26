@@ -10,11 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
-import com.sun.corba.se.spi.servicecontext.UEInfoServiceContext;
-
-import cn.edu.xjtu.se.lib.dao.BookDao;
 import cn.edu.xjtu.se.lib.dao.BookImpl;
 import cn.edu.xjtu.se.lib.dao.OrderImpl;
 import cn.edu.xjtu.se.lib.dao.UserImpl;
@@ -23,16 +19,16 @@ import cn.edu.xjtu.se.lib.entity.Order;
 import cn.edu.xjtu.se.lib.entity.User;
 
 /**
- * Servlet implementation class BorrowBook
+ * Servlet implementation class ReturnBook
  */
-@WebServlet("/BorrowBook")
-public class BorrowBook extends HttpServlet {
+@WebServlet("/ReturnBook")
+public class ReturnBook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BorrowBook() {
+    public ReturnBook() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,55 +44,38 @@ public class BorrowBook extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		User user=(User)session.getAttribute("user");
-	if(user.getAlready_num()<10){
-		
 		User  u = new User();
 		
 		u.setIdCard(user.getIdCard());
-		u.setAlready_num(user.getAlready_num()+1);
+		u.setAlready_num(user.getAlready_num()-1);
 		
 		UserImpl userdao = new UserImpl();
 		userdao.updateNum(u);
 		
-		long t = new java.util.Date().getTime();//得到1970-1-1 0:0:0到现在的毫秒数
-		Date date = new Date(t);
-		t += 1728000000;
-		Date date1 = new Date(t);
-		
+		int orderId = Integer.parseInt(request.getParameter("orderId"));
 		String isbn = request.getParameter("bookId");
 		BookImpl b = new BookImpl();
 		Book book = b.searchByIsbn(isbn);
 		
 
-		book.setCan_borrow(book.getCan_borrow()-1);
+		book.setCan_borrow(book.getCan_borrow()+1);
 		//System.out.println(book);
 		b.updateBook(book);
 		
-		Order o = new Order();
-		//o.setUserBookId(0);
-		o.setIdCard(user.getIdCard());
-		o.setIsbn(book.getIsbn());
-		o.setStatus("normal");
-		o.setBorrowTime(date);
-		o.setReturnTime(date1);
-		
-		OrderImpl or = new OrderImpl();
-		
-		or.addOrder(o);//未加入数据库？？？？
-		
-		
 		User genxin = userdao.searchUserByIdCard(user.getIdCard());
 		session.setAttribute("user", genxin);
+		
+		OrderImpl or = new OrderImpl();
+		or.removeOrderById(orderId);
 		
 		
 		ArrayList orderList = new ArrayList();
 		//System.out.println(user.getIdCard());
 		orderList = or.searchByIdcard(user.getIdCard());
 		//System.out.println(orderList);
-        
+
 	    session.setAttribute("infoborrow",orderList);
-	    
-	}
+		
 		request.getRequestDispatcher("views/user/ReaderInfo.jsp").forward(request, response);
 	}
 

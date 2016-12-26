@@ -15,4 +15,6 @@ public interface OrderDao {
 	boolean updateStatus(String isbn, String idCard, String status);
 	//通过idcard查询所有order
 	ArrayList<Order> searchByIdcard(String idCard);
+	
+	boolean removeOrderById(int id);
 }

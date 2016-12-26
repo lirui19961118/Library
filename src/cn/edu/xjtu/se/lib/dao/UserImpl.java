@@ -46,7 +46,7 @@ public class UserImpl implements UserDao {
 					"values(" +
 					"?,?,?,?,?,?,?)";
 			PreparedStatement ptmt=conn.prepareStatement(sql);
-			System.out.println(sql);
+			//System.out.println(sql);
 			ptmt.setString(1, idCard);
 			ptmt.setString(2, password);
 			ptmt.setString(3, name);
@@ -167,6 +167,7 @@ public class UserImpl implements UserDao {
 			PreparedStatement ptmt;
 			ptmt = conn.prepareStatement(sql);
 			ptmt.setInt(1, u.getAlready_num());
+			System.out.println(u.getAlready_num());
 			ptmt.setString(2, u.getIdCard());
 			ptmt.execute();
 		} catch (SQLException e) {

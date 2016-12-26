@@ -21,6 +21,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="static/css/agency.min.css" rel="stylesheet">
 </head>
 <body>
+     
+     
+    
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
@@ -30,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<thead>
 						<tr>
 							<th>编号</th>
-							<th>图书</th>
+							<th>图书isbn</th>
 							<th>借阅时间</th>
 							<th>归还时间</th>
 							<th>状态</th>
@@ -73,20 +76,15 @@ for(int i=1;i<infoborrow.size();i++){
 							class="icon-bar"></span><span class="icon-bar"></span><span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">XJTU</a>
+					<div>XJTU</div>
 				</div>
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
-					<form class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="SearchHere" />
-						</div>
-						<button type="submit" class="btn btn-default">Submit</button>
-					</form>
+					
 					<ul class="nav navbar-nav navbar-right">
 						<!-->用session显示输出名字<-->
-						<li><a href="#">欢迎你:admin</a></li>
-						<li><a href="#">我的信息</a></li>
+						<li><a href="views/user/manager.jsp">欢迎你:admin</a></li>
+						<!-- <li><a href="#">我的信息</a></li> -->
 						<li><a href="#">注销</a></li>
 					</ul>
 				</div>

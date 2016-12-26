@@ -38,7 +38,7 @@ public class BookImpl implements BookDao {
 		}
 		try {
 			String sql="" +
-					"insert into Book" +
+					"insert into book" +
 					"(isbn,bookName,publish,author,total_num,can_borrow,describe,picture)" +
 					"values(" +
 					"?,?,?,?,?,?,?,?)";
@@ -109,6 +109,7 @@ public class BookImpl implements BookDao {
 			ptmt = conn.prepareStatement(sql);
 			ptmt.setInt(1, book.getTotal_num());
 			ptmt.setInt(2, book.getCan_borrow());
+			ptmt.setString(3, book.getIsbn());
 			ptmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
