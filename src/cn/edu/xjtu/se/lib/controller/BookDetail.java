@@ -37,6 +37,7 @@ public class BookDetail extends HttpServlet {
 		String isbn = request.getParameter("bookId");
 		BookImpl b = new BookImpl();
 		Book book = b.searchByIsbn(isbn);
+		System.out.println("找到book的"+book.getPicture());
 		request.setAttribute("bookDescrib", book);
 		
 		request.getRequestDispatcher("views/book/BookDetail.jsp").forward(request, response);

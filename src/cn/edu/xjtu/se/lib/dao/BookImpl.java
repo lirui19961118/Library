@@ -145,7 +145,7 @@ public class BookImpl implements BookDao {
 				b.setAuthor(rs.getString("author"));
 				b.setBookName(rs.getString("bookName"));
 				b.setCan_borrow(rs.getInt("can_borrow"));
-				b.setDescribe(rs.getString("describe"));
+				b.setDescribe(rs.getString("des"));
 				b.setPicture(rs.getString("picture"));
 				b.setPublish(rs.getString("publish"));
 				b.setTotal_num(rs.getInt("total_num"));

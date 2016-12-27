@@ -103,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 						<td>
 							<!-- <input class="min" name="" type="button" value="-" /> -->
-							<input class="text_box" name="num" type="text" value="<%= al.get(4) %>" style="width:25px;"/>
+							<input class="text_box" name="number" type="text" value="<%= al.get(4) %>" style="width:25px;"/>
 							<!-- <input class="add" name="" type="button" value="+" /> -->
 						</td>
 						<td>

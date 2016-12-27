@@ -57,7 +57,7 @@ public class ReturnBook extends HttpServlet {
 		BookImpl b = new BookImpl();
 		Book book = b.searchByIsbn(isbn);
 		
-
+        book.setTotal_num(book.getTotal_num());
 		book.setCan_borrow(book.getCan_borrow()+1);
 		//System.out.println(book);
 		b.updateBook(book);

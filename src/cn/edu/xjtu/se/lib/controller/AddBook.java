@@ -3,14 +3,23 @@ package cn.edu.xjtu.se.lib.controller;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+
+import org.apache.tomcat.util.http.fileupload.FileItem; 
+import org.apache.tomcat.util.http.fileupload.FileUploadException;  
+
+ 
 import cn.edu.xjtu.se.lib.dao.BookDao;
 import cn.edu.xjtu.se.lib.dao.BookImpl;
 import cn.edu.xjtu.se.lib.dao.UserDao;
@@ -51,6 +60,47 @@ public class AddBook extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		//response.setContentType("text/html; charset=UTF-8");
 		//response.setHeader("Content-Type", "text/html; charset=UTF-8");
+		  //为解析类提供配置信息  
+//        DiskFileItemFactory factory = new DiskFileItemFactory();  
+//        //创建解析类的实例  
+//        ServletFileUpload sfu = new ServletFileUpload(factory);  
+//        //开始解析  
+//        sfu.setFileSizeMax(1024*400);  
+//        //每个表单域中数据会封装到一个对应的FileItem对象上  
+//        try {  
+//            List<FileItem> items = sfu.parseRequest(request);  
+//            //区分表单域  
+//            for (int i = 0; i < items.size(); i++) {  
+//                FileItem item = items.get(i);  
+//                //isFormField为true，表示这不是文件上传表单域  
+//                if(!item.isFormField()){  
+//                    ServletContext sctx = getServletContext();  
+//                    //获得存放文件的物理路径  
+//                    //upload下的某个文件夹   得到当前在线的用户  找到对应的文件夹  
+//                      
+//                    String path = sctx.getRealPath("/upload");  
+//                    System.out.println(path);  
+//                    //获得文件名  
+//                    String fileName = item.getName();  
+//                    System.out.println(fileName);  
+//                    //该方法在某些平台(操作系统),会返回路径+文件名  
+//                    fileName = fileName.substring(fileName.lastIndexOf("/")+1);  
+//                    File file = new File(path+"\\"+fileName);  
+//                    if(!file.exists()){  
+//                        item.write(file);  
+//                        //将上传图片的名字记录到数据库中  
+//                          
+//                        resp.sendRedirect("/upload/ok.html");  
+//                    }  
+//                }  
+//            }  
+//        } catch (Exception e) {  
+//            e.printStackTrace();  
+//        }  
+		
+		
+		
+		
 		Book book=new Book();
 		BookDao bookdao = new BookImpl();
 		String f = request.getParameter("picture");
@@ -63,7 +113,7 @@ public class AddBook extends HttpServlet {
 		book.setTotal_num(num);
 		book.setCan_borrow(num);
 		book.setDescribe(request.getParameter("describe"));
-		book.setPicture("f");
+		book.setPicture(request.getParameter("picture"));
 		System.out.println(book);
 		bookdao.addBook(book);
 	

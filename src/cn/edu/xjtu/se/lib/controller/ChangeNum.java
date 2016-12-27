@@ -44,20 +44,23 @@ public class ChangeNum extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		String isbn = request.getParameter("isbn");
-		System.out.println(request.getParameter("num"));
+		System.out.println(request.getParameter("number"));
 		System.out.println(isbn);
-		int num = Integer.parseInt(request.getParameter("num"));
+		int num = Integer.parseInt(request.getParameter("number"));
 		BookDao bookdao = new BookImpl();
 		
 		Book b = bookdao.searchByIsbn(isbn);
-		if(num>b.getTotal_num()){
+		if(num > b.getTotal_num()){
 			b.setCan_borrow(b.getCan_borrow()+num-b.getTotal_num());
 			b.setTotal_num(num);
 		}
-		b.setTotal_num(num);
-		if(b.getCan_borrow()>num){
-			b.setCan_borrow(num);
+		else if(num < b.getTotal_num()){
+			
+			b.setCan_borrow(b.getCan_borrow()-b.getTotal_num()+num);
+			b.setTotal_num(num);
+			
 		}
+		
 		
 		bookdao.updateBook(b);
 		
