@@ -55,6 +55,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div style="color:red">
 					库存为0,不可借书
 				</div>
+				<% }else if(!user.getStatus().equals("normal")) {%>
+				<div style="color:red">
+					处于限制状态
+				</div>
 				<% }else if(user.getAlready_num() >= 10) {%>
 				<div style="color:red">
 					已达借书上限10，不可借书

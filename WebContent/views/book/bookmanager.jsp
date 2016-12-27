@@ -1,8 +1,11 @@
 <%@page import="cn.edu.xjtu.se.lib.entity.User"%>
+
 <%@ page language="java" import="java.util.*"
 	contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@page import="cn.edu.xjtu.se.lib.entity.*"%> 
 <%
+request.setCharacterEncoding("UTF-8");
+response.setCharacterEncoding("UTF-8");
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
@@ -12,7 +15,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html lang="zh-cn">
   <head>
   <base href="<%=basePath%>">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>管理图书界面</title>
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					<ul class="nav navbar-nav navbar-right">
 						<!-->用session显示输出名字<-->
-						<li><a>欢迎你:admin</a></li>
+						<li><a href="views/user/manager.jsp">欢迎你:admin</a></li>
 						
 						<li><a href="LogoutServlet">注销</a></li>
 						
@@ -84,7 +90,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			al = (ArrayList)bookSearch.get(i);
  %>
 
-
+   <form action="ChangeNum"  method="post">
 					<tr class="info">
 						<td>
 							<%= al.get(1) %>
@@ -92,15 +98,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<td>
 							<%= al.get(0) %>
 						</td>
+						
+							<input class="text_box" name="isbn" type="text" value="<%= al.get(0) %>" style="display:none" style="width:25px;" />
+						
 						<td>
 							<!-- <input class="min" name="" type="button" value="-" /> -->
-							<input class="text_box" name="goodnum" type="text" value="<%= al.get(4) %>" style="width:25px;" />
+							<input class="text_box" name="num" type="text" value="<%= al.get(4) %>" style="width:25px;"/>
 							<!-- <input class="add" name="" type="button" value="+" /> -->
 						</td>
 						<td>
-							<button onclick="" style="color:orange">修改数量</button>
+							<button  style="color:orange" type="submit">修改数量</button>
 						</td>
 					</tr>
+	</form>
 <% } 
     	}
 %>

@@ -66,7 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="col-md-5 column">
 				<div style="height:50px"></div>
 				<div class="ibox-content">
-					<form class="m-t" role="form" action="RegisterServlet"  method="post">
+					<form class="m-t" role="form" action="RegisterServlet"  method="post" name=form2 onsubmit="return checkform2();">
 						<div class="form-group">
 							学号：<input type="text" class="form-control" placeholder="您的学号"
 								name="idCard" required="">
@@ -109,7 +109,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</footer>
 
 	</div>
-
+<script   language="javascript">  
+function checkform2(){
+if(document.form2.name.value.length<1)
+{    alert("用户名不能为空");
+document.form2.name.focus();    
+return false;
+}   
+if(document.form2.idCard.value.length<1)
+{    alert("学号不能为空");
+document.form2.idCard.focus();    
+return false;
+} else if(!(/^21\d{8}$/.test(document.form2.idCard.value)))
+{
+	alert("学号格式不正确！");
+document.form2.idCard.focus();    
+return false;
+}
+if(document.form2.phone.value.length<1)
+{    alert("电话号码不能为空");
+document.form2.phone.focus();    
+return false;
+} else if(!(/^1[3|4|5|7|8]\d{9}$/.test(document.form2.phone.value)))
+{
+	 alert("电话号码格式不对");
+document.form2.phone.focus();    
+return false;
+}
+if(document.form2.password.value.length<1)
+{    alert("密码不能为空");  
+document.form2.password.focus();    
+return false;    
+} else if(!(/(?![a-z]+$|[0-9]+$)^[a-zA-Z0-9]{7,}$/.test(document.form2.password.value)))
+{
+	 alert("密码必须大于6位有字母和数字组成!");
+document.form2.password.focus();    
+return false;
+} else if(document.form2.confirmedpassword.value!=document.form2.password.value)
+{    alert("两次输入密码不一致");
+document.form2.confirmedpassword.focus();    
+return false;
+}  
+return true;}
+</script>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
