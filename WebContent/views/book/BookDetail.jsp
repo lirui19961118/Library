@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<% }else if(!user.getStatus().equals("normal")) {%>
 				<div style="color:red">
-					处于限制状态
+					您处于限制状态
 				</div>
 				<% }else if(user.getAlready_num() >= 10) {%>
 				<div style="color:red">
