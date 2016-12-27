@@ -68,7 +68,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="ibox-content">
 					<form class="m-t" role="form" action="RegisterServlet"  method="post" name=form2 onsubmit="return checkform2();">
 						<div class="form-group">
-							学号：<input type="text" class="form-control" placeholder="您的学号"
+							学号：<% if(request.getAttribute("error") != null) {%>
+							<span style="color:red"><%= request.getAttribute("error") %></span>
+							<% } %>
+							<input type="text" class="form-control" placeholder="您的学号"
 								name="idCard" required="">
 						</div>
 						<div class="form-group">
