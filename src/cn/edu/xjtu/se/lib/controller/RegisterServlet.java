@@ -50,28 +50,41 @@ public class RegisterServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		//response.setContentType("text/html; charset=UTF-8");
 		//response.setHeader("Content-Type", "text/html; charset=UTF-8");
-		User user=new User();
 		UserDao userdao=new UserImpl();
-		user.setIdCard(request.getParameter("idCard"));//学号
-		user.setName(request.getParameter("name"));
-		user.setPhone(request.getParameter("phone"));
-		String psw = request.getParameter("password");
-		String strong = null;
-		try {
-			strong = StrongPsw.getMD5(psw);
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		String idid = request.getParameter("idCard");
+		System.out.println(idid);
+		if(userdao.searchUserByIdCard(idid) != null){
+			request.setAttribute("error", "用户名重复！");
+			request.getRequestDispatcher("views/user/register.jsp").forward(request, response);
 		}
-		user.setPassword(strong);
-		user.setTotal_num(10);//最多借书数量
-		user.setAlready_num(0);
-		user.setStatus("normal"); //normal limit 
-		System.out.println(user.getName());
-		userdao.addUser(user);
-		System.out.println("注册成功");
 		
-		request.getRequestDispatcher("views/user/login.jsp").forward(request, response);
+		
+		else {
+			
+			User user=new User();
+			
+			user.setIdCard(request.getParameter("idCard"));//学号
+			user.setName(request.getParameter("name"));
+			user.setPhone(request.getParameter("phone"));
+			String psw = request.getParameter("password");
+			String strong = null;
+			try {
+				strong = StrongPsw.getMD5(psw);
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			user.setPassword(strong);
+			user.setTotal_num(10);//最多借书数量
+			user.setAlready_num(0);
+			user.setStatus("normal"); //normal limit 
+			//System.out.println(user.getName());
+			userdao.addUser(user);
+			System.out.println("注册成功");
+			
+			request.getRequestDispatcher("views/user/login.jsp").forward(request, response);
+		
+		}
 	}
 
 }

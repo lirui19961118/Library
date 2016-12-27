@@ -29,6 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<table class="table table-bordered">
 					<h1 style="text-align: center">借阅信息</h1>
 					<thead>
+					
 						<tr>
 							<th>编号</th>
 							<th>图书isbn</th>
@@ -63,8 +64,8 @@ for(int i=1;i<infoborrow.size();i++){
 	<td><%= i %></td>
 	<td><%= infob.get(2) %></td>	
     <td><%= infob.get(3) %></td>
-	<%-- <td><%= infob.get(4) %></td> --%>
-	<td><%= infob.get(5) %></td>
+	<td><%= infob.get(4) %></td>
+	<%-- <td><%= infob.get(5) %></td> --%>
 	<td><a class="btn btn-primary" href="ReturnBook?bookId=<%=infob.get(2)%>&orderId=<%=infob.get(0)%>">还书</a></td>
     </tr>
 
