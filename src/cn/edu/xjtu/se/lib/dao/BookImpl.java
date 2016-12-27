@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.org.apache.xerces.internal.impl.dv.xs.DecimalDV;
+
 import cn.edu.xjtu.se.lib.entity.Book;
 import cn.edu.xjtu.se.lib.entity.Order;
 import cn.edu.xjtu.se.lib.entity.User;
@@ -31,6 +33,8 @@ public class BookImpl implements BookDao {
 		int total_num = book.getTotal_num();
 		int can_borrow = book.getCan_borrow();
 		
+//		System.out.println("des:" + describe);
+		
 		conn = DBConnection.getConnection();
 		if(conn == null){
 			System.out.println("数据库没有连接");
@@ -39,7 +43,7 @@ public class BookImpl implements BookDao {
 		try {
 			String sql="" +
 					"insert into book" +
-					"(isbn,bookName,publish,author,total_num,can_borrow,describe,picture)" +
+					"(isbn,bookName,publish,author,total_num,can_borrow,picture,des)" +
 					"values(" +
 					"?,?,?,?,?,?,?,?)";
 			PreparedStatement ptmt=conn.prepareStatement(sql);
@@ -50,8 +54,8 @@ public class BookImpl implements BookDao {
 			ptmt.setString(4, author);
 			ptmt.setInt(5, total_num);
 			ptmt.setInt(6, can_borrow);
-			ptmt.setString(7, describe);
-			ptmt.setString(8, picpath);
+			ptmt.setString(7, picpath);
+			ptmt.setString(8, describe);
 			ptmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

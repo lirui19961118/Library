@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import cn.edu.xjtu.se.lib.dao.BookDao;
 import cn.edu.xjtu.se.lib.dao.BookImpl;
 import cn.edu.xjtu.se.lib.dao.UserDao;
@@ -52,6 +53,8 @@ public class AddBook extends HttpServlet {
 		//response.setHeader("Content-Type", "text/html; charset=UTF-8");
 		Book book=new Book();
 		BookDao bookdao = new BookImpl();
+		String f = request.getParameter("picture");
+		System.out.println(f);
 		int num =Integer.parseInt( request.getParameter("number"));
 		book.setIsbn(request.getParameter("isbn"));
 		book.setBookName(request.getParameter("bookName"));
@@ -60,6 +63,7 @@ public class AddBook extends HttpServlet {
 		book.setTotal_num(num);
 		book.setCan_borrow(num);
 		book.setDescribe(request.getParameter("describe"));
+		book.setPicture("f");
 		System.out.println(book);
 		bookdao.addBook(book);
 	

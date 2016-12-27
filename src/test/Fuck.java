@@ -12,7 +12,7 @@ public class Fuck {
 
 	public static void main(String[] args) {
 		
-		Book book=new Book();
+		Book book = new Book();
 		BookDao bookdao = new BookImpl();
 		//int num =Integer.parseInt(request.getParameter("number"));
 		book.setIsbn("1");
@@ -21,8 +21,9 @@ public class Fuck {
 		book.setAuthor("1");
 		book.setTotal_num(40);
 		book.setCan_borrow(40);
-		book.setDescribe("是是是");
-		//System.out.println(book);
+		book.setDescribe("asa");
+		book.setPicture("scr");
+		System.out.println(book.getDescribe());
 		bookdao.addBook(book);
 		
 		
