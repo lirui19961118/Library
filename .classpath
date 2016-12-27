@@ -16,5 +16,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.0.8.jar"/>
 	<classpathentry kind="lib" path="C:/Users/qazwsx/Desktop/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/qazwsx/Desktop/OS 机组 算法/机组/51CTO下载-jsmartcom_zh_CN/jsmartcom_zh_CN.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

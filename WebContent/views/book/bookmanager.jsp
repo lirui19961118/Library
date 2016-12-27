@@ -168,9 +168,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													<td>
 														出&nbsp&nbsp版&nbsp&nbsp社：<input type="text" name=publish>
 													</td>
-													<td>
-														书籍图片：<input type="file" name=picture>
-													</td>
 													
 												</tr>
 												
@@ -182,7 +179,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<button type="button" class="btn btn-default" data-dismiss="modal">关闭
 											</button>
 											<button type="submit" class="btn btn-primary">
-												提交更改
+												上传图片
 											</button>
 										</div>
 										

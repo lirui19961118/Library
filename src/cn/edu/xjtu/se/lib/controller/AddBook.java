@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.jspsmart.upload.SmartUpload;
 
 import org.apache.tomcat.util.http.fileupload.FileItem; 
 import org.apache.tomcat.util.http.fileupload.FileUploadException;  
@@ -99,21 +100,30 @@ public class AddBook extends HttpServlet {
 //        }  
 		
 		
-		
+//		SmartUpload su = new  SmartUpload();
+		//su.service(request,response);
 		
 		Book book=new Book();
 		BookDao bookdao = new BookImpl();
-		String f = request.getParameter("picture");
-		System.out.println(f);
+		//String f = request.getParameter("picture");
+		
+		//System.out.println(f);
 		int num =Integer.parseInt( request.getParameter("number"));
 		book.setIsbn(request.getParameter("isbn"));
 		book.setBookName(request.getParameter("bookName"));
 		book.setPublish(request.getParameter("publish"));
 		book.setAuthor(request.getParameter("author"));
+//		int num =Integer.parseInt( su.getRequest().getParameter("number"));
+//		book.setIsbn(su.getRequest().getParameter("isbn"));
+//		book.setBookName(su.getRequest().getParameter("bookName"));
+//		book.setPublish(su.getRequest().getParameter("publish"));
+//		book.setAuthor(su.getRequest().getParameter("author"));
 		book.setTotal_num(num);
 		book.setCan_borrow(num);
 		book.setDescribe(request.getParameter("describe"));
 		book.setPicture(request.getParameter("picture"));
+//		book.setDescribe(su.getRequest().getParameter("describe"));
+//		book.setPicture(su.getRequest().getParameter("picture"));
 		System.out.println(book);
 		bookdao.addBook(book);
 	
@@ -124,9 +134,9 @@ public class AddBook extends HttpServlet {
 		books = bookdao.displayAllBook();
 		
         request.setAttribute("books", books);
-		
-		
-		request.getRequestDispatcher("views/book/bookmanager.jsp").forward(request, response);
+        String is = request.getParameter("isbn");
+        request.setAttribute("isbns", is);
+		request.getRequestDispatcher("views/book/bookPic.jsp").forward(request, response);
 	}
 
 }

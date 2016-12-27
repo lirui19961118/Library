@@ -14,6 +14,9 @@ public interface BookDao {
 	boolean removeBook(Book book);
     //更新书籍（改变总书籍和课结束及数量）
 	Book updateBook(Book book);
+	//
+	//更新书籍（改变总书籍和课结束及数量）
+		Book updateBookPic(Book book);
 	//通过isbn搜索书籍
 	Book searchByIsbn(String isbn);
 	//通过书名模糊搜索书籍

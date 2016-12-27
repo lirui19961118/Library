@@ -195,5 +195,32 @@ public class BookImpl implements BookDao {
 		b = new QueryList().queryReturnList(sql);
 		return b;
 	}
-
+	
+	@Override
+	public Book updateBookPic(Book book) {
+		// TODO Auto-generated method stub
+				Connection conn=DBConnection.getConnection();
+				if(conn == null){
+					System.out.println("数据库没有连接");
+					return null;
+				}
+				
+				try {
+					String sql="" +
+							" update Book " +
+							" set picture=? " +
+							" where isbn=? ";
+					PreparedStatement ptmt;
+					ptmt = conn.prepareStatement(sql);
+					ptmt.setString(1, book.getPicture());
+					ptmt.setString(2, book.getIsbn());
+					ptmt.execute();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} finally{
+					DBConnection.close(conn, st, rs);
+				}
+				return book;
+	}
 }
