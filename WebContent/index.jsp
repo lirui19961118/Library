@@ -73,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<li class="hidden"><a href="#page-top"></a></li>
 				<li><a class="page-scroll" href="views/user/register.jsp">Register</a>
 				</li>
-				<li><a class="page-scroll" href="">About Us</a></li>
+				<li><a class="page-scroll" href="AboutUs.html">About Us</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
