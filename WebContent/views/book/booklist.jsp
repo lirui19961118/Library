@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								src=<%=al.get(7) %> />
 							<div class="caption">
 								<h3><%=al.get(1) %></h3>
-								<p><%=al.get(6) %></p>
+								<%-- <p><%=al.get(6) %></p> --%>
 								<p>
 									<a class="btn btn-primary" href="BookDetail?bookId=<%=al.get(0)%>">查看详情</a>
 								</p>

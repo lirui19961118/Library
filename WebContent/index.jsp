@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Index</title>
+<title>欢迎来到图书馆</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="static/vendor/bootstrap/css/bootstrap.min.css"
@@ -99,9 +99,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="col-md-4">
 				<ul class="list-inline social-buttons">
-					<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-					<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-					<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+					<li><a href="#"><i class="fa fa-twitter" style="margin-top:10px"></i></a></li>
+					<li><a href="#"><i class="fa fa-facebook"style="margin-top:10px"></i></a></li>
+					<li><a href="#"><i class="fa fa-linkedin"style="margin-top:10px"></i></a></li>
 				</ul>
 			</div>
 			<div class="col-md-4">

@@ -224,11 +224,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                 <div class="col-md-4">
                     <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        <li><a href="#"><i class="fa fa-twitter"style="margin-top:10px"></i></a>
                         </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        <li><a href="#"><i class="fa fa-facebook"style="margin-top:10px"></i></a>
                         </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        <li><a href="#"><i class="fa fa-linkedin"style="margin-top:10px"></i></a>
                         </li>
                     </ul>
                 </div>
